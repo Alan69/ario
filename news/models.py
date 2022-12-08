@@ -9,8 +9,9 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    name = models.CharField(max_length=255, null=True, blank=True)
-    text = models.TextField(null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    desc = models.TextField(null=True, blank=True)
+    img = models.ImageField(null=True, blank=True)
     cat_id = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

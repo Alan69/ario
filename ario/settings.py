@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zz4=!e)cejnt$+r14rtit_$q$yk)f*f8go*txk4_x^d&)pz3d9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.arioapi.pythonanywhere.com']
 
 
 # Application definition
@@ -43,28 +43,11 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-
     'DEFAULT_FILTER_BACKENDS':[
 		'django_filters.rest_framework.DjangoFilterBackend',
 	],
 }
 
-
-ACCOUNT_EMAIL_VERIFICATION = None
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-
-REST_AUTH_SERIALIZERS = {
-    "USER_DETAILS_SERIALIZER": "soiree.serializers.CustomUserDetailsSerializer",
-}
-REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "soiree.serializers.CustomRegisterSerializer",
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +59,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = ("x-requested-with", "content-type", "accept", "origin", "authorization", "x-csrftoken")
 
 ROOT_URLCONF = 'ario.urls'
 
@@ -145,10 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
-STATIC_DIRS = [
-    BASE_DIR/'static'
-]
+STATIC_ROOT = BASE_DIR/'static/'
+# STATIC_DIRS = [
+#     BASE_DIR/'static'
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
