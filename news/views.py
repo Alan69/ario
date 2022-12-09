@@ -13,9 +13,6 @@ class PostList(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['cat_id',]
 
-
-
-
 @api_view(['GET', 'POST'])
 def post_list(request, format=None):
     """
