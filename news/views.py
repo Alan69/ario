@@ -1,23 +1,19 @@
 from .models import Post
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .serializer import PostSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['cat_id',]
 
-    name = 'posts'
-      
-    filter_fields = (
-        'cat_id',
-    )
+
 
 
 @api_view(['GET', 'POST'])
@@ -29,9 +25,6 @@ def post_list(request, format=None):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
 
-        filter_fields = (
-        'cat_id',
-        )
 
         return Response(serializer.data)
 
