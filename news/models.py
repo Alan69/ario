@@ -17,3 +17,19 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Article(models.Model):
+    title = models.CharField(max_length=55,  null=True, blank=True)
+    author = models.CharField(max_length=55,  null=True, blank=True)
+    desc = models.TextField(null=True, blank=True)
+    date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+class Comment(models.Model):
+    name = models.CharField(max_length=255, null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
+    date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name
