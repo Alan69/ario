@@ -21,26 +21,6 @@ class PostList(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['cat_id',]
 
-@api_view(['GET', 'POST'])
-def post_list(request, format=None):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
-
-
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 @api_view(['GET', 'PUT', 'DELETE'])
 def post_detail(request, pk, format=None):
     """
@@ -71,6 +51,7 @@ def post_detail(request, pk, format=None):
 class ArticleList(generics.ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    pagination_class = StandardResultsSetPagination
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def article_detail(request, pk, format=None):
