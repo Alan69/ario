@@ -31,6 +31,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now=True)
+    article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name

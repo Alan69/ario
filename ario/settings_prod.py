@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_filters',
     'news',
     'requestapp',
+    'ckeditor',
 ]
 
 REST_FRAMEWORK = {
@@ -120,9 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True
 
