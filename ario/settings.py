@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zz4=!e)cejnt$+r14rtit_$q$yk)f*f8go*txk4_x^d&)pz3d9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# ALLOWED_HOSTS = ['.arioapi.pythonanywhere.com']
-ALLOWED_HOSTS = ['*']
+DEBUG = False
+ALLOWED_HOSTS = ['.arioapi.pythonanywhere.com']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django_filters',
     'news',
     'requestapp',
-    'django_quill',
+    'ckeditor',
 ]
 
 REST_FRAMEWORK = {
@@ -121,9 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True
 
@@ -134,10 +134,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR/'static/'
-STATIC_DIRS = [
-    BASE_DIR/'static'
-]
+STATIC_ROOT = BASE_DIR/'static/'
+# STATIC_DIRS = [
+#     BASE_DIR/'static'
+# ]
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

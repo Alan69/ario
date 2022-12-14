@@ -1,5 +1,5 @@
 from django.db import models
-from django_quill.fields import QuillField
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Category(models.Model):
@@ -11,7 +11,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
-    desc = QuillField()
+    desc = RichTextField(null=True, blank=True)
     img = models.ImageField(null=True, blank=True, upload_to='pics')
     cat_id = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
@@ -21,7 +21,7 @@ class Post(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=55,  null=True, blank=True)
     author = models.CharField(max_length=55,  null=True, blank=True)
-    desc = QuillField()
+    desc = RichTextField(null=True, blank=True)
     date = models.DateField(auto_now=True)
 
     def __str__(self):
