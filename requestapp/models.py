@@ -36,3 +36,19 @@ class RequestTypeTwo(models.Model):
 
     def __str__(self):
         return self.name + " " + self.job_title
+
+class RequestTypeThree(models.Model):
+    job_location = models.CharField(max_length=255)
+    job_title = models.CharField(max_length=255)
+    surname = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    father_name = models.CharField(max_length=255)
+    number = models.CharField(max_length=25)
+    email = models.EmailField(max_length=255)
+    adres = models.CharField(max_length=255)
+    lgota = models.CharField(max_length=255)
+    dokument = models.FileField(upload_to='files', null=True, blank=True)
+    comment = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name + " " + self.job_title

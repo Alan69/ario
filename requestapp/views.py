@@ -1,6 +1,6 @@
-from .models import Request, RequestTypeTwo
+from .models import Request, RequestTypeTwo, RequestTypeThree
 from rest_framework.parsers import JSONParser
-from .serializer import RequestSerializer, RequestTypeTwoSerializer
+from .serializer import RequestSerializer, RequestTypeTwoSerializer, RequestTypeThreeSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -53,6 +53,34 @@ def requestTypeTwo_detail(request, pk, format=None):
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = RequestTypeTwoSerializer(request_obj, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        request_obj.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class RequestTypeThreeList(generics.ListCreateAPIView):
+    queryset = RequestTypeThree.objects.all()
+    serializer_class = RequestTypeThreeSerializer
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def requestTypeThree_detail(request, pk, format=None):
+    try:
+        request_obj = RequestTypeThree.objects.get(pk=pk)
+    except RequestTypeThree.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = RequestTypeThreeSerializer(request_obj)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = RequestTypeThreeSerializer(request_obj, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
