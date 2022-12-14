@@ -8,5 +8,8 @@ urlpatterns = [
 
     path('talimger-request/', views.RequestTypeTwoList.as_view()),
     path('talimger-request/<int:pk>/', views.requestTypeTwo_detail),
+
+    path('ustaz-request/', views.RequestTypeThreeList.as_view()),
+    path('ustaz-request/<int:pk>/', views.requestTypeThree_detail),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
