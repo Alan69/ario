@@ -12,7 +12,7 @@ class Request(models.Model):
     ur_adres = models.CharField(max_length=255)
     post_adres = models.CharField(max_length=255)
     post_index = models.CharField(max_length=255)
-    ustav_copy = models.FileField(upload_to='files', null=True, blank=True)
+    ustav_copy = models.FileField(upload_to='media/files', null=True, blank=True)
 
     def __str__(self):
         return self.ur_name

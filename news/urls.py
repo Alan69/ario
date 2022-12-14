@@ -12,5 +12,4 @@ urlpatterns = [
     path('comment/', views.CommentList.as_view()),
     path('comment/<int:pk>/', views.comment_detail),
 ]
-
 urlpatterns = format_suffix_patterns(urlpatterns)
