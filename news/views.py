@@ -6,18 +6,17 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.pagination import PageNumberPagination
+# from rest_framework.pagination import PageNumberPagination
 
 
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 2
-    page_size_query_param = 'page_size'
-    max_page_size = 200
+# class StandardResultsSetPagination(PageNumberPagination):
+#     page_size = 2
+#     page_size_query_param = 'page_size'
+#     max_page_size = 200
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['cat_id',]
 
@@ -51,7 +50,6 @@ def post_detail(request, pk, format=None):
 class ArticleList(generics.ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    pagination_class = StandardResultsSetPagination
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def article_detail(request, pk, format=None):
@@ -83,6 +81,8 @@ def article_detail(request, pk, format=None):
 class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['artticle',]
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def comment_detail(request, pk, format=None):

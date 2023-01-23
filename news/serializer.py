@@ -5,7 +5,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ["id", "title", "desc", "img", "cat_id"]
+        fields = ["id", "title", "desc", "img", "about", "date", "cat_id"]
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -17,4 +17,4 @@ class ArticleSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ["id", "name", "comment", "date", "artticle"]

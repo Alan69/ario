@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'news',
     'requestapp',
     'ckeditor',
+    'urequest',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -49,8 +51,6 @@ REST_FRAMEWORK = {
 		'django_filters.rest_framework.DjangoFilterBackend',
 	],
 
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 2
 }
 
 
@@ -68,7 +68,47 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_HEADERS = ("x-requested-with", "content-type", "accept", "origin", "authorization", "x-csrftoken")
+# CORS_ALLOWED_ORIGINS = [
+# "https://u-admin.vercel.app/",
+# 'https://u-admin.vercel.app',
+# 'https://u-admin.vercel.app/international/',
+# 'https://u-admin.vercel.app/international',
+# 'https://arioapi.pythonanywhere.com',
+# 'https://arioapi.pythonanywhere.com/',
+# ]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "u-admin.vercel.app",
+# ]
+
+# CORS_ORIGIN_WHITELIST = [
+#     "https://u-admin.vercel.app",
+#     "https://u-admin.vercel.app/",
+#     'https://arioapi.pythonanywhere.com',
+# 'https://arioapi.pythonanywhere.com/',
+# ]
+
+# CORS_ALLOW_HEADERS = [
+# 'accept',
+# 'accept-encoding',
+# 'authorization',
+# 'content-type',
+# 'dnt',
+# 'origin',
+# 'user-agent',
+# 'x-csrftoken',
+# 'x-requested-with',
+# ]
+
+# CORS_ALLOW_METHODS = [
+# 'DELETE',
+# 'GET',
+# 'OPTIONS',
+# 'PATCH',
+# 'POST',
+# 'PUT',
+# ]
+
 
 ROOT_URLCONF = 'ario.urls'
 
